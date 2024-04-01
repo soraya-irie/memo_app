@@ -50,7 +50,7 @@ def edit_memo(file_name)
 
   puts "メモを更新しました。"
 end
- 
+  
 # メインの機能
 def main_loop
   
