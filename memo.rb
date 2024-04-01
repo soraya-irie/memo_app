@@ -2,12 +2,10 @@ require 'csv'
 
 # 新しいメモを追加するための関数
 def add_memo(file_name)
-  puts "メモに追加するテキストを入力してください (終了するには'end'と入力):"
+  puts "メモに追加するテキストを入力してください (終了するにはCtrl + Dと入力):"
   
   memo_lines = []
-  loop do #復習行入力するためのループ
-    line = gets.chomp
-    break if line == "end"
+  while line = gets&.chomp #複数行入力するためのループ
     memo_lines << line
   end
 
@@ -37,11 +35,9 @@ def edit_memo(file_name)
     return
   end
 
-  puts "新しいメモの内容を入力してください (終了するには'end'と入力):"
+  puts "新しいメモの内容を入力してください (終了するにはCtrl + Dと入力):"
   new_memo_lines = []
-  loop do #復習行入力するためのループ
-    line = gets.chomp
-    break if line == "end"
+  while line = gets&.chomp #複数行入力するためのループ
     new_memo_lines << line
   end
   new_memo = new_memo_lines.join("\n")
