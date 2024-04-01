@@ -23,29 +23,17 @@ end
 
 # 編集するための関数
 def edit_memo(file_name)
-  memos = CSV.read(file_name)
-  puts "編集するメモの番号を選択してください:"
-  memos.each_with_index do |memo, index|
-    puts "#{index + 1}: #{memo.join}"
-  end
-
-  which_line = gets.chomp.to_i
-  if which_line < 1 || which_line > memos.length
-    puts "無効な選択です。"
-    return
-  end
-
   puts "新しいメモの内容を入力してください (終了するにはCtrl + Dと入力):"
   new_memo_lines = []
-  while line = gets&.chomp #複数行入力するためのループ
-    new_memo_lines << line
+  
+  while line = gets #複数行入力するためのループ
+    new_memo_lines << line.chomp
   end
+
   new_memo = new_memo_lines.join("\n")
-
-  memos[which_line - 1] = [new_memo]
-
+  
   CSV.open(file_name, "w") do |csv|
-    memos.each { |memo| csv << memo }
+    csv << [new_memo]
   end
 
   puts "メモを更新しました。"
